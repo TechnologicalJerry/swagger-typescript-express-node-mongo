@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import config from "config";
 
 async function databaseConnection() {
-  const dbUri = config.get<string>("dbUri");
+  const dbUrl = config.get<string>('dbUrl');
   try {
-    await mongoose.connect(dbUri);
+    await mongoose.connect(dbUrl);
     console.log("Connected to DB");
   } catch (error) {
     console.log(error);
