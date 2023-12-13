@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import config from "config";
 
-async function connectToDb() {
+async function databaseConnection() {
   const dbUri = config.get<string>("dbUri");
   try {
     await mongoose.connect(dbUri);
@@ -12,4 +12,4 @@ async function connectToDb() {
   }
 }
 
-export default connectToDb;
+export default databaseConnection;
