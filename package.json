@@ -1,0 +1,19 @@
+{
+  "name": "swagger-typescript-express-node-mongo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TechnologicalJerry/swagger-typescript-express-node-mongo.git"
+  },
+  "author": "technojerry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TechnologicalJerry/swagger-typescript-express-node-mongo/issues"
+  },
+  "homepage": "https://github.com/TechnologicalJerry/swagger-typescript-express-node-mongo#readme"
+}
