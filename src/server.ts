@@ -5,7 +5,7 @@ require("dotenv").config();
 
 const app = express();
 
-const HOST = "localhost";
+const HOST = config.get('host');
 
 const PORT = config.get('port');
 
