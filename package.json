@@ -40,6 +40,7 @@
     "nanoid": "^5.0.4",
     "nodemailer": "^6.9.7",
     "pino": "^8.17.0",
+    "swagger-typescript-express-node-mongo": "file:",
     "zod": "^3.22.4"
   }
 }
