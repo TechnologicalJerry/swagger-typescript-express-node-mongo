@@ -1,16 +1,45 @@
-import express from "express";
-import config from "config";
-import databaseConnection from "../config/databaseConfig";
+import app from './app';
+import connectDB from './config/db.config';
+import { env } from './config/env.config';
+import logger from './utils/logger';
+import http from 'http';
 
-require("dotenv").config();
+const PORT = Number(env.PORT) || 9000;
 
-const app = express();
+// Connect to database
+connectDB()
+  .then(() => {
+    // Start server
+    const server = http.createServer(app);
+    server.listen(PORT, () => {
+      logger.info(`Server running in ${env.NODE_ENV} mode on port ${PORT}`);
+      logger.info(`API Documentation available at http://localhost:${PORT}/api-docs`);
+    });
+  })
+  .catch((error) => {
+    logger.error('Failed to start server:', error);
+    process.exit(1);
+  });
 
-const HOST = config.get("host");
+// Handle unhandled promise rejections
+process.on('unhandledRejection', (err: Error) => {
+  logger.error('Unhandled Promise Rejection:', err);
+  process.exit(1);
+});
 
-const PORT = config.get("port");
+// Handle uncaught exceptions
+process.on('uncaughtException', (err: Error) => {
+  logger.error('Uncaught Exception:', err);
+  process.exit(1);
+});
 
-app.listen(PORT, () => {
-  console.log(`SERVER RUNNING on HOST:${HOST} PORT:${PORT}`);
-  databaseConnection();
+// Graceful shutdown
+process.on('SIGTERM', () => {
+  logger.info('SIGTERM received. Shutting down gracefully...');
+  process.exit(0);
+});
+
+process.on('SIGINT', () => {
+  logger.info('SIGINT received. Shutting down gracefully...');
+  process.exit(0);
 });
